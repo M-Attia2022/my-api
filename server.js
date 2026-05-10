@@ -10,7 +10,7 @@ let cars = [
 ];
 
 // الاند بوينت الأولى: الحصول على كل السيارات
-app.get('/cars', (req, res) => {
+app.get('/', (req, res) => {
     res.json(cars);
 });
 
