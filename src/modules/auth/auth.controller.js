@@ -22,7 +22,7 @@ const generateTokens = (user) => {
 // ===== POST /auth/register =====
 const register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, img } = req.body;
 
     // التحقق من وجود المستخدم
     const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -38,8 +38,8 @@ const register = async (req, res) => {
 
     // إنشاء المستخدم
     const user = await prisma.user.create({
-      data: { name, email, password: hashedPassword, role },
-      select: { id: true, name: true, email: true, role: true, createdAt: true },
+      data: { name, email, password: hashedPassword, role, img },
+      select: { id: true, name: true, email: true, role: true, img: true, createdAt: true },
     });
 
     return res.status(201).json({
@@ -89,7 +89,7 @@ const login = async (req, res) => {
       success: true,
       message: 'Login successful.',
       data: {
-        user: { id: user.id, name: user.name, email: user.email, role: user.role },
+        user: { id: user.id, name: user.name, email: user.email, role: user.role, password: user.password, img: user.img },
         accessToken,
         refreshToken,
       },

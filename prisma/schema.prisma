@@ -15,6 +15,7 @@ model User {
   email        String    @unique
   password     String
   name         String?
+  img          String?
   role         Role      @default(customer)
   refreshToken String?
   createdAt    DateTime  @default(now())
