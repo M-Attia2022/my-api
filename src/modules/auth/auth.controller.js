@@ -36,7 +36,7 @@ const register = async (req, res) => {
     // تشفير كلمة المرور
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // إنشاء المستخدم
+    // إنشاء المستخدم  -
     const user = await prisma.user.create({
       data: { name, email, password: hashedPassword, role, img },
       select: { id: true, name: true, email: true, role: true, img: true, createdAt: true },
