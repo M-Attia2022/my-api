@@ -9,6 +9,7 @@ const userRoutes = require('./modules/user/user.routes');
 const productRoutes = require('./modules/product/product.routes');
 
 const app = express();
+app.set('trust proxy', 1); // الثقة في الـ proxy الخاص بـ Vercel عشان الـ rate limit يشتغل صح
 
 // ===== Security Middlewares =====
 app.use(helmet()); // Security headers
